@@ -124,6 +124,18 @@ static const struct MenuAction sStartMenuActionTable[] = {
     { gStartMenuText_Player, {.u8_void = StartMenuLinkPlayerCallback} }
 };
 
+static const struct MenuAction sStartMenuActionTable_ESP[] = {
+    { gStartMenuText_Pokedex, {.u8_void = StartMenuPokedexCallback} },
+    { gStartMenuText_Pokemon, {.u8_void = StartMenuPokemonCallback} },
+    { gStartMenuText_Bag_ESP, {.u8_void = StartMenuBagCallback} },
+    { gStartMenuText_Player, {.u8_void = StartMenuPlayerCallback} },
+    { gStartMenuText_Save_ESP, {.u8_void = StartMenuSaveCallback} },
+    { gStartMenuText_Option_ESP, {.u8_void = StartMenuOptionCallback} },
+    { gStartMenuText_Exit_ESP, {.u8_void = StartMenuExitCallback} },
+    { gStartMenuText_Retire_ESP, {.u8_void = StartMenuSafariZoneRetireCallback} },
+    { gStartMenuText_Player, {.u8_void = StartMenuLinkPlayerCallback} }
+};
+
 static const struct WindowTemplate sSafariZoneStatsWindowTemplate = {
     .bg = 0,
     .tilemapLeft = 1,
@@ -144,6 +156,18 @@ static const u8 *const sStartMenuDescPointers[] = {
     gStartMenuDesc_Exit,
     gStartMenuDesc_Retire,
     gStartMenuDesc_Player
+};
+
+static const u8 *const sStartMenuDescPointers_ESP[] = {
+    gStartMenuDesc_Pokedex_ESP,
+    gStartMenuDesc_Pokemon_ESP,
+    gStartMenuDesc_Bag_ESP,
+    gStartMenuDesc_Player_ESP,
+    gStartMenuDesc_Save_ESP,
+    gStartMenuDesc_Option_ESP,
+    gStartMenuDesc_Exit_ESP,
+    gStartMenuDesc_Retire_ESP,
+    gStartMenuDesc_Player_ESP
 };
 
 static const struct BgTemplate sBGTemplates_AfterLinkSaveMessage[] = {
@@ -274,11 +298,17 @@ static s8 PrintStartMenuItems(s8 *cursor_p, u8 nitems)
     {
         if (sStartMenuOrder[i] == STARTMENU_PLAYER || sStartMenuOrder[i] == STARTMENU_PLAYER2)
         {
-            Menu_PrintFormatIntlPlayerName(GetStartMenuWindowId(), sStartMenuActionTable[sStartMenuOrder[i]].text, 8, i * 15);
+            if (gSaveBlock2Ptr->currentLanguague)
+                Menu_PrintFormatIntlPlayerName(GetStartMenuWindowId(), sStartMenuActionTable[sStartMenuOrder[i]].text, 8, i * 15);
+            else
+                Menu_PrintFormatIntlPlayerName(GetStartMenuWindowId(), sStartMenuActionTable_ESP[sStartMenuOrder[i]].text, 8, i * 15);
         }
         else
         {
-            StringExpandPlaceholders(gStringVar4, sStartMenuActionTable[sStartMenuOrder[i]].text);
+            if (gSaveBlock2Ptr->currentLanguague)
+                StringExpandPlaceholders(gStringVar4, sStartMenuActionTable[sStartMenuOrder[i]].text);
+            else
+                StringExpandPlaceholders(gStringVar4, sStartMenuActionTable_ESP[sStartMenuOrder[i]].text);
             AddTextPrinterParameterized(GetStartMenuWindowId(), 2, gStringVar4, 8, i * 15, 0xFF, NULL);
         }
         i++;
@@ -321,7 +351,10 @@ static s8 DoDrawStartMenu(void)
         sStartMenuCursorPos = Menu_InitCursor(GetStartMenuWindowId(), 2, 0, 0, 15, sNumStartMenuItems, sStartMenuCursorPos);
         if (!MenuHelpers_LinkSomething() && InUnionRoom() != TRUE && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_HELP)
         {
-            DrawHelpMessageWindowWithText(sStartMenuDescPointers[sStartMenuOrder[sStartMenuCursorPos]]);
+            if (gSaveBlock2Ptr->currentLanguague)
+                DrawHelpMessageWindowWithText(sStartMenuDescPointers[sStartMenuOrder[sStartMenuCursorPos]]);
+            else
+                DrawHelpMessageWindowWithText(sStartMenuDescPointers_ESP[sStartMenuOrder[sStartMenuCursorPos]]);
         }
         CopyWindowToVram(GetStartMenuWindowId(), COPYWIN_MAP);
         return TRUE;
@@ -405,7 +438,10 @@ static bool8 StartCB_HandleInput(void)
         sStartMenuCursorPos = Menu_MoveCursor(-1);
         if (!MenuHelpers_LinkSomething() && InUnionRoom() != TRUE && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_HELP)
         {
-            PrintTextOnHelpMessageWindow(sStartMenuDescPointers[sStartMenuOrder[sStartMenuCursorPos]], 2);
+            if (gSaveBlock2Ptr->currentLanguague)
+                PrintTextOnHelpMessageWindow(sStartMenuDescPointers[sStartMenuOrder[sStartMenuCursorPos]], 2);
+            else
+                PrintTextOnHelpMessageWindow(sStartMenuDescPointers_ESP[sStartMenuOrder[sStartMenuCursorPos]], 2);
         }
     }
     if (JOY_NEW(DPAD_DOWN))
@@ -414,7 +450,10 @@ static bool8 StartCB_HandleInput(void)
         sStartMenuCursorPos = Menu_MoveCursor(+1);
         if (!MenuHelpers_LinkSomething() && InUnionRoom() != TRUE && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_HELP)
         {
-            PrintTextOnHelpMessageWindow(sStartMenuDescPointers[sStartMenuOrder[sStartMenuCursorPos]], 2);
+            if (gSaveBlock2Ptr->currentLanguague)
+                PrintTextOnHelpMessageWindow(sStartMenuDescPointers[sStartMenuOrder[sStartMenuCursorPos]], 2);
+            else
+                PrintTextOnHelpMessageWindow(sStartMenuDescPointers_ESP[sStartMenuOrder[sStartMenuCursorPos]], 2);
         }
     }
     if (JOY_NEW(A_BUTTON))
@@ -422,7 +461,10 @@ static bool8 StartCB_HandleInput(void)
         PlaySE(SE_SELECT);
         if (!StartMenuPokedexSanityCheck())
             return FALSE;
-        sStartMenuCallback = sStartMenuActionTable[sStartMenuOrder[sStartMenuCursorPos]].func.u8_void;
+        if (gSaveBlock2Ptr->currentLanguague)
+            sStartMenuCallback = sStartMenuActionTable[sStartMenuOrder[sStartMenuCursorPos]].func.u8_void;
+        else
+            sStartMenuCallback = sStartMenuActionTable_ESP[sStartMenuOrder[sStartMenuCursorPos]].func.u8_void;
         StartMenu_FadeScreenIfLeavingOverworld();
         return FALSE;
     }
@@ -449,8 +491,16 @@ static void StartMenu_FadeScreenIfLeavingOverworld(void)
 
 static bool8 StartMenuPokedexSanityCheck(void)
 {
-    if (sStartMenuActionTable[sStartMenuOrder[sStartMenuCursorPos]].func.u8_void == StartMenuPokedexCallback && GetNationalPokedexCount(0) == 0)
-        return FALSE;
+    if (gSaveBlock2Ptr->currentLanguague)
+    {
+        if (sStartMenuActionTable[sStartMenuOrder[sStartMenuCursorPos]].func.u8_void == StartMenuPokedexCallback && GetNationalPokedexCount(0) == 0)
+            return FALSE;
+    }
+    else
+    {
+        if (sStartMenuActionTable_ESP[sStartMenuOrder[sStartMenuCursorPos]].func.u8_void == StartMenuPokedexCallback && GetNationalPokedexCount(0) == 0)
+            return FALSE;
+    }
     return TRUE;
 }
 

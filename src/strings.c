@@ -113,11 +113,14 @@ ALIGNED(4) const u8 gText_IDNumber[] = _("IDNo.");
 const u8 gUnknown_841610A[] = _("{HIGHLIGHT DYNAMIC_COLOR6}{COLOR WHITE}オダマキはかせが ピンチだ!\nポケモンを だして たすけてあげよう!");
 const u8 gUnknown_8416133[] = _("{HIGHLIGHT DYNAMIC_COLOR6}{COLOR WHITE}このポケモンにしますか?");
 const u8 gUnknown_8416146[] = _("ポケモン");
+
+// Initial menu
 const u8 gText_SaveError_PleaseExchangeBackupMemory[] = _("Save error.\pPlease exchange the\nbackup memory.");
 const u8 gSaveStatName_Player[] = _("PLAYER");
 const u8 gSaveStatName_Badges[] = _("BADGES");
 const u8 gSaveStatName_Pokedex[] = _("POKéDEX");
 const u8 gSaveStatName_Time[] = _("TIME");
+
 const u8 gUnknown_8416195[] = _("どこへ とびますか?");
 const u8 gOtherText_Use[] = _("USE");
 const u8 gOtherText_Toss[] = _("TOSS");
@@ -156,15 +159,24 @@ const u8 gText_SelectorArrow2[] = _("▶");
 const u8 gUnknown_841623D[] = _("YES\nNO");
 const u8 gText_GoBackToThePreviousMenu[] = _("Go back to the\nprevious menu.");
 const u8 gText_WhatWouldYouLikeToDo[] = _("What would you like to do?");
+
+// Start menu
 const u8 gStartMenuText_Pokedex[] = _("POKéDEX");
+
 const u8 gStartMenuText_Bag[] = _("BAG");
+const u8 gStartMenuText_Bag_ESP[] = _("MOCHILA");
 const u8 gUnknown_8416289[] = _("ポケナビ");
 const u8 gStartMenuText_Player[] = _("{PLAYER}");
 const u8 gStartMenuText_Save[] = _("SAVE");
+const u8 gStartMenuText_Save_ESP[] = _("GUARDAR");
 const u8 gStartMenuText_Option[] = _("OPTION");
+const u8 gStartMenuText_Option_ESP[] = _("OPCIONES");
 const u8 gStartMenuText_Exit[] = _("EXIT");
+const u8 gStartMenuText_Exit_ESP[] = _("SALIR");
 const u8 gStartMenuText_Retire[] = _("RETIRE");
+const u8 gStartMenuText_Retire_ESP[] = _("RETIR.");
 const u8 gUnknown_84162A9[] = _("{STR_VAR_1}/{STR_VAR_2}\nBALLS  {STR_VAR_3}");
+
 const u8 gText_TimesStrVar1[] = _("×{STR_VAR_1}");
 const u8 gUnknown_84162BD[] = _(" BERRY");
 const u8 gText_Coins[] = _("{STR_VAR_1} COINS");
@@ -861,29 +873,55 @@ const u8 gText_PokemonTrades[] = _("POKéMON TRADES");
 const u8 gText_UnionRoomTradesBattles[] = _("UNION TRADES & BATTLES");
 const u8 gText_BerryCrushes[] = _("BERRY CRUSH");
 const u8 gText_WaitingTrainerFinishReading[] = _("Waiting for the other TRAINER to\nfinish reading your TRAINER CARD.");
+
+// option menu
 const u8 gText_MenuOption[] = _("OPTION");
+const u8 gText_MenuOption_ESP[] = _("OPCIONES");
 const u8 gText_TextSpeed[] = _("TEXT SPEED");
+const u8 gText_TextSpeed_ESP[] = _("VELOC. TEXTO");
 const u8 gText_BattleScene[] = _("BATTLE SCENE");
+const u8 gText_BattleScene_ESP[] = _("ANIM. COMBATE");
 const u8 gText_BattleStyle[] = _("BATTLE STYLE");
+const u8 gText_BattleStyle_ESP[] = _("TIPO COMBATE");
 const u8 gText_Sound[] = _("SOUND");
+const u8 gText_Sound_ESP[] = _("SONIDO");
 const u8 gText_ButtonMode[] = _("BUTTON MODE");
+const u8 gText_ButtonMode_ESP[] = _("CONTROLES");
 const u8 gText_Frame[] = _("FRAME");
+const u8 gText_Frame_ESP[] = _("IMAGEN");
 const u8 gText_OptionMenuCancel[] = _("CANCEL");
+const u8 gText_OptionMenuCancel_ESP[] = _("SALIR");
+const u8 gText_Language[] = _("LANGUAGE");
+const u8 gText_Language_ESP[] = _("IDIOMA");
+const u8 gText_LanguageEnglish[] = _("ENGLISH");
+const u8 gText_LanguageSpanish[] = _("ESPAÑOL");
 const u8 gText_TextSpeedSlow[] = _("SLOW");
+const u8 gText_TextSpeedSlow_ESP[] = _("LENTA");
 const u8 gText_TextSpeedMid[] = _("MID");
+const u8 gText_TextSpeedMid_ESP[] = _("MEDIA");
 const u8 gText_TextSpeedFast[] = _("FAST");
+const u8 gText_TextSpeedFast_ESP[] = _("RÁPIDA");
 const u8 gText_BattleSceneOn[] = _("ON");
+const u8 gText_BattleSceneOn_ESP[] = _("SÍ");
 const u8 gText_BattleSceneOff[] = _("OFF");
+const u8 gText_BattleSceneOff_ESP[] = _("NO");
 const u8 gText_BattleStyleShift[] = _("SHIFT");
+const u8 gText_BattleStyleShift_ESP[] = _("CAMBIO");
 const u8 gText_BattleStyleSet[] = _("SET");
+const u8 gText_BattleStyleSet_ESP[] = _("MANTENER");
 const u8 gText_SoundMono[] = _("MONO");
 const u8 gText_SoundStereo[] = _("STEREO");
+const u8 gText_SoundStereo_ESP[] = _("ESTÉREO");
 const u8 gTextJP_Type[] = _("タイプ");
 const u8 gText_ButtonTypeHelp[] = _("HELP");
+const u8 gText_ButtonTypeHelp_ESP[] = _("AYUDA");
 const u8 gText_ButtonTypeLEqualsA[] = _("L=A");
 const u8 gText_ButtonTypeLR[] = _("LR");
 const u8 gText_FrameType[] = _("TYPE");
+const u8 gText_FrameType_ESP[] = _("TIPO");
 const u8 gText_PickSwitchCancel[] = _("{DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}CANCEL");
+const u8 gText_PickSwitchCancel_ESP[] = _("{DPAD_UPDOWN}SEL. {DPAD_LEFTRIGHT}CAMBIAR {A_BUTTON}{B_BUTTON}ATRÁS");
+
 const u8 gUnknown_8419E72[] = _("RTCを リセットします\nAで けってい Bで キャンセル");
 const u8 gUnknown_8419E90[] = _("げんざいの ゲ-ムない じかん");
 const u8 gUnknown_8419EA0[] = _("ぜんかいの ゲ-ムない じかん");
@@ -893,17 +931,26 @@ const u8 gUnknown_8419EEA[] = _("レポ-トを かきこみました!");
 const u8 gUnknown_8419EF9[] = _("レポ-トの かきこみに\nしっぱい しました‥");
 const u8 gUnknown_8419F10[] = _("レポ-トが ないので\nじかんの せっていは できません!");
 const u8 gUnknown_8419F2D[] = _("ゲ-ムない じかんの しゅうせい システムが\nつかえる ように なりました!");
+
 const u8 gText_SavingDontTurnOffThePower2[] = _("SAVING…\nDON'T TURN OFF THE POWER.");
 
 // Start menu option descriptions
 const u8 gStartMenuDesc_Pokedex[] = _("A device that records POKéMON secrets\nupon meeting or catching them.");
+const u8 gStartMenuDesc_Pokedex_ESP[] = _("Contiene importantes datos de los\nPKMN con los que te vas encontrando.");//{PKMN}
 const u8 gStartMenuDesc_Pokemon[] = _("Check and organize POKéMON that are\ntraveling with you in your party.");
+const u8 gStartMenuDesc_Pokemon_ESP[] = _("Aquí, entre otras cosas, puedes\norganizar los PKMN de tu equipo.");//{PKMN}
 const u8 gStartMenuDesc_Bag[] = _("Equipped with pockets for storing items\nyou bought, received, or found.");
+const u8 gStartMenuDesc_Bag_ESP[] = _("Guarda en los bolsillos las cosas\nque encuentres, compres o te den.");
 const u8 gStartMenuDesc_Player[] = _("Check your money and other game data.");
+const u8 gStartMenuDesc_Player_ESP[] = _("Aquí podrás ver algunos datos de\ntu partida, como el dinero que llevas.");
 const u8 gStartMenuDesc_Save[] = _("Save your game with a complete record\nof your progress to take a break.");
+const u8 gStartMenuDesc_Save_ESP[] = _("Guarda cuando quieras todos los datos\nde tu partida para descansar un rato.");
 const u8 gStartMenuDesc_Option[] = _("Adjust various game settings such as text\nspeed, game rules, etc.");
+const u8 gStartMenuDesc_Option_ESP[] = _("Si quieres cambiar la velocidad del\ntexto, el sonido, etc., haslo desde aquí.");
 const u8 gStartMenuDesc_Exit[] = _("Close this MENU window.");
+const u8 gStartMenuDesc_Exit_ESP[] = _("Selecciona esta opción si quieres\nsalir del menú.");
 const u8 gStartMenuDesc_Retire[] = _("Retire from the SAFARI GAME and return to\nthe registration counter.");
+const u8 gStartMenuDesc_Retire_ESP[] = _("Retirarse del SAFARI y volver al\nmostrador de inscripiones.");
 
 #include "data/text/quest_log.h"
 

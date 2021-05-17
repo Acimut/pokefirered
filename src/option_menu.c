@@ -23,7 +23,8 @@ enum
     MENUITEM_SOUND,
     MENUITEM_BUTTONMODE,
     MENUITEM_FRAMETYPE,
-    MENUITEM_CANCEL,
+    //MENUITEM_CANCEL,
+    MENUITEM_LANGUAGE,  //SPANISH
     MENUITEM_COUNT
 };
 
@@ -131,7 +132,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 0};
+static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 2};
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -141,7 +142,21 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_SOUND]       = gText_Sound,
     [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
     [MENUITEM_FRAMETYPE]   = gText_Frame,
-    [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
+    //[MENUITEM_CANCEL]      = gText_OptionMenuCancel,
+    [MENUITEM_LANGUAGE]    = gText_Language,
+};
+
+//SPANISH
+static const u8 *const sOptionMenuItemsNames_ESP[MENUITEM_COUNT] =
+{
+    [MENUITEM_TEXTSPEED]   = gText_TextSpeed_ESP,
+    [MENUITEM_BATTLESCENE] = gText_BattleScene_ESP,
+    [MENUITEM_BATTLESTYLE] = gText_BattleStyle_ESP,
+    [MENUITEM_SOUND]       = gText_Sound_ESP,
+    [MENUITEM_BUTTONMODE]  = gText_ButtonMode_ESP,
+    [MENUITEM_FRAMETYPE]   = gText_Frame_ESP,
+    //[MENUITEM_CANCEL]      = gText_OptionMenuCancel_ESP,
+    [MENUITEM_LANGUAGE]    = gText_Language_ESP,
 };
 
 static const u8 *const sTextSpeedOptions[] =
@@ -151,10 +166,25 @@ static const u8 *const sTextSpeedOptions[] =
     gText_TextSpeedFast
 };
 
+//SPANISH
+static const u8 *const sTextSpeedOptions_ESP[] =
+{
+    gText_TextSpeedSlow_ESP, 
+    gText_TextSpeedMid_ESP, 
+    gText_TextSpeedFast_ESP
+};
+
 static const u8 *const sBattleSceneOptions[] =
 {
     gText_BattleSceneOn, 
     gText_BattleSceneOff
+};
+
+//SPANISH
+static const u8 *const sBattleSceneOptions_ESP[] =
+{
+    gText_BattleSceneOn_ESP, 
+    gText_BattleSceneOff_ESP
 };
 
 static const u8 *const sBattleStyleOptions[] =
@@ -163,10 +193,24 @@ static const u8 *const sBattleStyleOptions[] =
     gText_BattleStyleSet
 };
 
+//SPANISH
+static const u8 *const sBattleStyleOptions_ESP[] =
+{
+    gText_BattleStyleShift_ESP,
+    gText_BattleStyleSet_ESP
+};
+
 static const u8 *const sSoundOptions[] =
 {
     gText_SoundMono, 
     gText_SoundStereo
+};
+
+//SPANISH
+static const u8 *const sSoundOptions_ESP[] =
+{
+    gText_SoundMono, 
+    gText_SoundStereo_ESP
 };
 
 static const u8 *const sButtonTypeOptions[] =
@@ -174,6 +218,20 @@ static const u8 *const sButtonTypeOptions[] =
     gText_ButtonTypeHelp,
 	gText_ButtonTypeLR,
 	gText_ButtonTypeLEqualsA
+};
+
+//SPANISH
+static const u8 *const sButtonTypeOptions_ESP[] =
+{
+    gText_ButtonTypeHelp_ESP,
+	gText_ButtonTypeLR,
+	gText_ButtonTypeLEqualsA
+};
+
+static const u8 *const sLanguageOptions[] =
+{
+    gText_LanguageSpanish, 
+    gText_LanguageEnglish
 };
 
 static const u8 sOptionMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
@@ -212,6 +270,7 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->option[MENUITEM_SOUND] = gSaveBlock2Ptr->optionsSound;
     sOptionMenuPtr->option[MENUITEM_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
     sOptionMenuPtr->option[MENUITEM_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
+    sOptionMenuPtr->option[MENUITEM_LANGUAGE] = gSaveBlock2Ptr->currentLanguague; //SPANISH
     
     for (i = 0; i < MENUITEM_COUNT - 1; i++)
     {
@@ -316,9 +375,19 @@ static void InitOptionMenuBg(void)
 static void OptionMenu_PickSwitchCancel(void)
 {
     s32 x;
-    x = 0xE4 - GetStringWidth(0, gText_PickSwitchCancel, 0);
-    FillWindowPixelBuffer(2, PIXEL_FILL(15)); 
-    AddTextPrinterParameterized3(2, 0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchCancel);
+    if (gSaveBlock2Ptr->currentLanguague)
+    {
+        x = 0xE4 - GetStringWidth(0, gText_PickSwitchCancel, 0);
+        FillWindowPixelBuffer(2, PIXEL_FILL(15));
+        AddTextPrinterParameterized3(2, 0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchCancel);
+    }
+    else    //SPANISH
+    {
+        x = 0xE4 - GetStringWidth(0, gText_PickSwitchCancel_ESP, 0);
+        FillWindowPixelBuffer(2, PIXEL_FILL(15)); 
+        AddTextPrinterParameterized3(2, 0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchCancel_ESP);
+    }
+
     PutWindowTilemap(2);
     CopyWindowToVram(2, COPYWIN_BOTH);
 }
@@ -440,14 +509,16 @@ static u8 OptionMenu_ProcessInput(void)
     else if (JOY_REPT(DPAD_UP))
     {
         if (sOptionMenuPtr->cursorPos == MENUITEM_TEXTSPEED)
-            sOptionMenuPtr->cursorPos = MENUITEM_CANCEL;
+            sOptionMenuPtr->cursorPos = MENUITEM_LANGUAGE;
+            //sOptionMenuPtr->cursorPos = MENUITEM_CANCEL;
         else
             sOptionMenuPtr->cursorPos = sOptionMenuPtr->cursorPos - 1;
         return 3;        
     }
     else if (JOY_REPT(DPAD_DOWN))
     {
-        if (sOptionMenuPtr->cursorPos == MENUITEM_CANCEL)
+        //if (sOptionMenuPtr->cursorPos == MENUITEM_CANCEL)
+        if (sOptionMenuPtr->cursorPos == MENUITEM_LANGUAGE)
             sOptionMenuPtr->cursorPos = MENUITEM_TEXTSPEED;
         else
             sOptionMenuPtr->cursorPos = sOptionMenuPtr->cursorPos + 1;
@@ -478,25 +549,46 @@ static void BufferOptionMenuString(u8 selection)
     switch (selection)
     {
     case MENUITEM_TEXTSPEED:
-        AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sTextSpeedOptions[sOptionMenuPtr->option[selection]]);
+        if (gSaveBlock2Ptr->currentLanguague)
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sTextSpeedOptions[sOptionMenuPtr->option[selection]]);
+        else
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sTextSpeedOptions_ESP[sOptionMenuPtr->option[selection]]);
         break;
     case MENUITEM_BATTLESCENE:
-        AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleSceneOptions[sOptionMenuPtr->option[selection]]);
+        if (gSaveBlock2Ptr->currentLanguague)
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleSceneOptions[sOptionMenuPtr->option[selection]]);
+        else
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleSceneOptions_ESP[sOptionMenuPtr->option[selection]]);
         break;
     case MENUITEM_BATTLESTYLE:
-        AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleStyleOptions[sOptionMenuPtr->option[selection]]);
+        if (gSaveBlock2Ptr->currentLanguague)
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleStyleOptions[sOptionMenuPtr->option[selection]]);
+        else
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleStyleOptions_ESP[sOptionMenuPtr->option[selection]]);
         break;
     case MENUITEM_SOUND:
-        AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sSoundOptions[sOptionMenuPtr->option[selection]]);
+        if (gSaveBlock2Ptr->currentLanguague)
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sSoundOptions[sOptionMenuPtr->option[selection]]);
+        else
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sSoundOptions_ESP[sOptionMenuPtr->option[selection]]);
         break;
     case MENUITEM_BUTTONMODE:
-        AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sButtonTypeOptions[sOptionMenuPtr->option[selection]]);
+        if (gSaveBlock2Ptr->currentLanguague)
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sButtonTypeOptions[sOptionMenuPtr->option[selection]]);
+        else
+            AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sButtonTypeOptions_ESP[sOptionMenuPtr->option[selection]]);
         break;
     case MENUITEM_FRAMETYPE:
-        StringCopy(str, gText_FrameType);
+        if (gSaveBlock2Ptr->currentLanguague)
+            StringCopy(str, gText_FrameType);
+        else
+            StringCopy(str, gText_FrameType_ESP);
         ConvertIntToDecimalStringN(buf, sOptionMenuPtr->option[selection] + 1, 1, 2);
         StringAppendN(str, buf, 3);
         AddTextPrinterParameterized3(1, 2, x, y, dst, -1, str);
+        break;
+    case MENUITEM_LANGUAGE:
+        AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sLanguageOptions[sOptionMenuPtr->option[selection]]);
         break;
     default:
         break;
@@ -516,6 +608,7 @@ static void CloseAndSaveOptionMenu(u8 taskId)
     gSaveBlock2Ptr->optionsSound = sOptionMenuPtr->option[MENUITEM_SOUND];
     gSaveBlock2Ptr->optionsButtonMode = sOptionMenuPtr->option[MENUITEM_BUTTONMODE];
     gSaveBlock2Ptr->optionsWindowFrameType = sOptionMenuPtr->option[MENUITEM_FRAMETYPE];
+    gSaveBlock2Ptr->currentLanguague = sOptionMenuPtr->option[MENUITEM_LANGUAGE];   //SPANISH
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
     FREE_AND_SET_NULL(sOptionMenuPtr);
     DestroyTask(taskId);
@@ -524,7 +617,10 @@ static void CloseAndSaveOptionMenu(u8 taskId)
 static void PrintOptionMenuHeader(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized(WIN_TEXT_OPTION, 2, gText_MenuOption, 8, 1, TEXT_SPEED_FF, NULL);
+    if (gSaveBlock2Ptr->currentLanguague)
+        AddTextPrinterParameterized(WIN_TEXT_OPTION, 2, gText_MenuOption, 8, 1, TEXT_SPEED_FF, NULL);
+    else
+        AddTextPrinterParameterized(WIN_TEXT_OPTION, 2, gText_MenuOption_ESP, 8, 1, TEXT_SPEED_FF, NULL);
     PutWindowTilemap(0);
     CopyWindowToVram(0, COPYWIN_BOTH);
 }
@@ -558,9 +654,19 @@ static void LoadOptionMenuItemNames(void)
     u8 i;
     
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    for (i = 0; i < MENUITEM_COUNT; i++)
+    if (gSaveBlock2Ptr->currentLanguague)
     {
-        AddTextPrinterParameterized(WIN_OPTIONS, 2, sOptionMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);    
+        for (i = 0; i < MENUITEM_COUNT; i++)
+        {
+            AddTextPrinterParameterized(WIN_OPTIONS, 2, sOptionMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);    
+        }
+    }
+    else
+    {
+        for (i = 0; i < MENUITEM_COUNT; i++)
+        {
+            AddTextPrinterParameterized(WIN_OPTIONS, 2, sOptionMenuItemsNames_ESP[i], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);    
+        }
     }
 }
 

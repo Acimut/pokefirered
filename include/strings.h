@@ -633,7 +633,16 @@ extern const u8 gStartMenuText_Save[];
 extern const u8 gStartMenuText_Option[];
 extern const u8 gStartMenuText_Exit[];
 extern const u8 gStartMenuText_Retire[];
+//pokedex, pokemon n player quedan igual en español
+extern const u8 gStartMenuText_Bag_ESP[];
+extern const u8 gStartMenuText_Save_ESP[];
+extern const u8 gStartMenuText_Option_ESP[];
+extern const u8 gStartMenuText_Exit_ESP[];
+extern const u8 gStartMenuText_Retire_ESP[];
+
 extern const u8 gUnknown_84162A9[];
+
+// Start menu option descriptions
 extern const u8 gStartMenuDesc_Pokedex[];
 extern const u8 gStartMenuDesc_Pokemon[];
 extern const u8 gStartMenuDesc_Bag[];
@@ -642,13 +651,31 @@ extern const u8 gStartMenuDesc_Option[];
 extern const u8 gStartMenuDesc_Exit[];
 extern const u8 gStartMenuDesc_Retire[];
 extern const u8 gStartMenuDesc_Player[];
+
+extern const u8 gStartMenuDesc_Pokedex_ESP[];
+extern const u8 gStartMenuDesc_Pokemon_ESP[];
+extern const u8 gStartMenuDesc_Bag_ESP[];
+extern const u8 gStartMenuDesc_Save_ESP[];
+extern const u8 gStartMenuDesc_Option_ESP[];
+extern const u8 gStartMenuDesc_Exit_ESP[];
+extern const u8 gStartMenuDesc_Retire_ESP[];
+extern const u8 gStartMenuDesc_Player_ESP[];
+
+// Initial menu
 extern const u8 gText_SaveError_PleaseExchangeBackupMemory[];
 extern const u8 gText_SavingDontTurnOffThePower2[];
 extern const u8 gSaveStatName_Player[];
 extern const u8 gSaveStatName_Badges[];
 extern const u8 gSaveStatName_Pokedex[];
 extern const u8 gSaveStatName_Time[];
-
+/*
+extern const u8 gText_SaveError_PleaseExchangeBackupMemory_ESP[];
+extern const u8 gText_SavingDontTurnOffThePower2_ESP[];
+extern const u8 gSaveStatName_Player_ESP[];
+extern const u8 gSaveStatName_Badges_ESP[];
+extern const u8 gSaveStatName_Pokedex_ESP[];
+extern const u8 gSaveStatName_Time_ESP[];
+*/
 // mail
 extern const u8 gText_From[];
 
@@ -920,28 +947,59 @@ extern const u8 gText_Rooftop2[];
 
 // option menu
 extern const u8 gText_TextSpeed[];
+extern const u8 gText_TextSpeed_ESP[];
 extern const u8 gText_BattleScene[];
+extern const u8 gText_BattleScene_ESP[];
 extern const u8 gText_BattleStyle[];
+extern const u8 gText_BattleStyle_ESP[];
 extern const u8 gText_Sound[];
+extern const u8 gText_Sound_ESP[];
 extern const u8 gText_ButtonMode[];
+extern const u8 gText_ButtonMode_ESP[];
 extern const u8 gText_Frame[];
+extern const u8 gText_Frame_ESP[];
 extern const u8 gText_OptionMenuCancel[];
+extern const u8 gText_OptionMenuCancel_ESP[];
+extern const u8 gText_Language[];
+extern const u8 gText_Language_ESP[];
+
+extern const u8 gText_LanguageEnglish[];
+extern const u8 gText_LanguageSpanish[];
+
 extern const u8 gText_TextSpeedSlow[];
+extern const u8 gText_TextSpeedSlow_ESP[];
 extern const u8 gText_TextSpeedMid[];
+extern const u8 gText_TextSpeedMid_ESP[];
 extern const u8 gText_TextSpeedFast[];
+extern const u8 gText_TextSpeedFast_ESP[];
 extern const u8 gText_BattleSceneOn[];
+extern const u8 gText_BattleSceneOn_ESP[];
 extern const u8 gText_BattleSceneOff[];
+extern const u8 gText_BattleSceneOff_ESP[];
 extern const u8 gText_BattleStyleShift[];
+extern const u8 gText_BattleStyleShift_ESP[];
 extern const u8 gText_BattleStyleSet[];
+extern const u8 gText_BattleStyleSet_ESP[];
+
 extern const u8 gText_SoundMono[];
+
 extern const u8 gText_SoundStereo[];
+extern const u8 gText_SoundStereo_ESP[];
 extern const u8 gText_ButtonTypeHelp[];
+extern const u8 gText_ButtonTypeHelp_ESP[];
+
 extern const u8 gText_ButtonTypeLR[];
 extern const u8 gText_ButtonTypeLEqualsA[];
+
 extern const u8 gText_MenuOption[];
+extern const u8 gText_MenuOption_ESP[];
 extern const u8 gText_FrameType[];
+extern const u8 gText_FrameType_ESP[];
+
 extern const u8 gTextJP_Type[];
+
 extern const u8 gText_PickSwitchCancel[];
+extern const u8 gText_PickSwitchCancel_ESP[];
 
 // evolution_scene
 extern const u8 gText_PkmnIsEvolving[];

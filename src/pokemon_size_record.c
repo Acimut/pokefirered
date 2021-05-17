@@ -93,7 +93,8 @@ static void FormatMonSizeRecord(u8 *string, u32 size)
 #ifdef UNITS_IMPERIAL
     //Convert size from centimeters to inches
     //In the Hoenn games, this conversion was performed using floating point values
-    size = size * 100 / 254;
+    if (gSaveBlock2Ptr->currentLanguague)
+        size = size * 100 / 254;
 #endif
 
     string = ConvertIntToDecimalStringN(string, size / 10, STR_CONV_MODE_LEFT_ALIGN, 8);
