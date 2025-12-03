@@ -66,4 +66,7 @@ prefabs.json
 .vscode/*.*
 *.js
 *.sym
-pokefirered.txt
+build-cmake-*/
+.cache/
+CMakeLists.txt
+compile_commands.json
