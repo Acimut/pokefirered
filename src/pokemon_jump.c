@@ -3340,7 +3340,7 @@ static bool32 ResetVineGfx(void)
     return TRUE;
 }
 
-#if ENGLISH
+#if GAME_LANGUAGE == LANGUAGE_ENGLISH
 static const u8 sPluralTxt[] = _("IES");
 #endif
 
@@ -3348,7 +3348,7 @@ static void PrintPrizeMessage(u16 itemId, u16 quantity)
 {
     CopyItemName(itemId, sPokemonJumpGfx->itemName);
     ConvertIntToDecimalStringN(sPokemonJumpGfx->itemQuantityStr, quantity, STR_CONV_MODE_LEFT_ALIGN, 1);
-#if ENGLISH
+#if GAME_LANGUAGE == LANGUAGE_ENGLISH
     if (itemId >= FIRST_BERRY_INDEX && itemId < LAST_BERRY_INDEX)
     {
         if (quantity > 1)

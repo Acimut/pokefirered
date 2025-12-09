@@ -49,7 +49,7 @@ void AGBPrintInit(void);
 #endif
 #endif
 
-#if NDEBUG || SPANISH || ITALIAN || FRENCH || GERMAN
+#if NDEBUG || NOAGBPRN
 
 #define AGB_ASSERT(exp)
 #define AGB_WARNING(exp)

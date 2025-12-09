@@ -148,14 +148,12 @@ void AgbMain()
 
     SetNotInSaveFailedScreen();
 
-#ifndef NDEBUG
-#if ENGLISH && (!SPANISH || !ITALIAN || !GERMAN)
+#if !NDEBUG && !NOAGBPRN
     #if (LOG_HANDLER == LOG_HANDLER_MGBA_PRINT)
         (void) MgbaOpen();
     #elif (LOG_HANDLER == LOG_HANDLER_AGB_PRINT)
         AGBPrintInit();
     #endif
-#endif
 #endif
 
 #if REVISION == 1 || (GAME_LANGUAGE == LANGUAGE_ITALIAN || GAME_LANGUAGE == LANGUAGE_GERMAN)
