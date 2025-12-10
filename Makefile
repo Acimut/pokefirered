@@ -262,43 +262,6 @@ leafgreen_fr_modern:   ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=FRENCH MO
 firered_de_modern:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=GERMAN MODERN=1
 leafgreen_de_modern:   ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=GERMAN MODERN=1
 
-#test
-#Ubuntu 22.04 use: time make rojofuego -j$NPROC
-rojofuego:
-	@$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH
-	@$(MAKE) syms GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH
-
-verdehoja:
-	@$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=SPANISH
-	@$(MAKE) syms GAME_VERSION=LEAFGREEN GAME_LANGUAGE=SPANISH
-
-#WSL2 TEST use: time make rossofuoco -j$NPROC
-rossofuoco:
-	@$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=ITALIAN
-	@$(MAKE) syms GAME_VERSION=FIRERED GAME_LANGUAGE=ITALIAN
-
-verdefoglia:
-	@$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=ITALIAN
-	@$(MAKE) syms GAME_VERSION=LEAFGREEN GAME_LANGUAGE=ITALIAN
-
-#WSL2 TEST use: time make rougefeu -j$NPROC
-rougefeu:
-	@$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=FRENCH
-	@$(MAKE) syms GAME_VERSION=FIRERED GAME_LANGUAGE=FRENCH
-
-vertfeuille:
-	@$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=FRENCH
-	@$(MAKE) syms GAME_VERSION=LEAFGREEN GAME_LANGUAGE=FRENCH
-
-#WSL2 TEST use: time make feuerrote -j$NPROC
-feuerrote:
-	@$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=GERMAN
-	@$(MAKE) syms GAME_VERSION=FIRERED GAME_LANGUAGE=GERMAN
-
-blattgruene:
-	@$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=GERMAN
-	@$(MAKE) syms GAME_VERSION=LEAFGREEN GAME_LANGUAGE=GERMAN
-
 modern: ; @$(MAKE) MODERN=1
 
 # Other rules
@@ -418,67 +381,24 @@ $(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
 
 $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
 	$(RAMSCRGEN) ewram_data $< ENGLISH > $@
-endif #ENGLISH
-ifeq ($(GAME_LANGUAGE),ITALIAN)
-$(OBJ_DIR)/sym_bss.ld: sym_bss_it.txt
-	$(RAMSCRGEN) .bss $< ITALIAN > $@
+else
+$(OBJ_DIR)/sym_bss.ld: sym_bss_europe.txt
+	$(RAMSCRGEN) .bss $< $(GAME_LANGUAGE) > $@
 
 $(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
-	$(RAMSCRGEN) COMMON $< ITALIAN -c $(C_BUILDDIR),common_syms > $@
+	$(RAMSCRGEN) COMMON $< $(GAME_LANGUAGE) -c $(C_BUILDDIR),common_syms > $@
 
 $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
-	$(RAMSCRGEN) ewram_data $< ITALIAN > $@
-endif #ITALIAN
-ifeq ($(GAME_LANGUAGE),FRENCH)
-$(OBJ_DIR)/sym_bss.ld: sym_bss_fr.txt
-	$(RAMSCRGEN) .bss $< FRENCH > $@
-
-$(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
-	$(RAMSCRGEN) COMMON $< FRENCH -c $(C_BUILDDIR),common_syms > $@
-
-$(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
-	$(RAMSCRGEN) ewram_data $< FRENCH > $@
-endif #FRENCH
-ifeq ($(GAME_LANGUAGE),GERMAN)
-$(OBJ_DIR)/sym_bss.ld: sym_bss_de.txt
-	$(RAMSCRGEN) .bss $< GERMAN > $@
-
-$(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
-	$(RAMSCRGEN) COMMON $< GERMAN -c $(C_BUILDDIR),common_syms > $@
-
-$(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
-	$(RAMSCRGEN) ewram_data $< GERMAN > $@
-endif #GERMAN
-ifeq ($(GAME_LANGUAGE),SPANISH)
-$(OBJ_DIR)/sym_bss.ld: sym_bss_es.txt
-	$(RAMSCRGEN) .bss $< SPANISH > $@
-
-$(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
-	$(RAMSCRGEN) COMMON $< SPANISH -c $(C_BUILDDIR),common_syms > $@
-
-$(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
-	$(RAMSCRGEN) ewram_data $< SPANISH > $@
-endif #SPANISH
-
-# sym_bss_it.txt & ld_script_it.ld maybe the same as the Spanish version
+	$(RAMSCRGEN) ewram_data $< $(GAME_LANGUAGE) > $@
+endif #GAME_LANGUAGE
 
 # Linker script
 ifeq ($(MODERN),0)
   ifeq ($(GAME_LANGUAGE),ENGLISH)
     LD_SCRIPT := ld_script.ld
-  endif #ENGLISH
-  ifeq ($(GAME_LANGUAGE),FRENCH)
-    LD_SCRIPT := ld_script_fr.ld
-  endif #FRENCH
-  ifeq ($(GAME_LANGUAGE),GERMAN)
-    LD_SCRIPT := ld_script_de.ld
-  endif #GERMAN
-  ifeq ($(GAME_LANGUAGE),ITALIAN)
-    LD_SCRIPT := ld_script_it.ld
-  endif #ITALIAN
-  ifeq ($(GAME_LANGUAGE),SPANISH)
-    LD_SCRIPT := ld_script_es.ld
-  endif #SPANISH
+  else
+    LD_SCRIPT := ld_script_europe.ld
+  endif
     LD_SCRIPT_DEPS := $(OBJ_DIR)/sym_bss.ld $(OBJ_DIR)/sym_common.ld $(OBJ_DIR)/sym_ewram.ld
 else
 LD_SCRIPT := ld_script_modern.ld
