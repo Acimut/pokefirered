@@ -31,7 +31,7 @@ struct AGBPrintStruct
 
 typedef void (*LPFN_PRINT_FLUSH)(void);
 
-#if !NDEBUG && ENGLISH
+#if !NDEBUG && GAME_LANGUAGE == LANGUAGE_ENGLISH
 
 // AGBPrint print functions
 #if (LOG_HANDLER == LOG_HANDLER_AGB_PRINT)
