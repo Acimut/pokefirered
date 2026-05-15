@@ -31,7 +31,8 @@ struct AGBPrintStruct
 
 typedef void (*LPFN_PRINT_FLUSH)(void);
 
-#if !defined(NDEBUG) && GAME_LANGUAGE == LANGUAGE_ENGLISH
+// Revision 10 still has this code present, despite only the init function ever being used.
+#if (!defined(NDEBUG) && GAME_LANGUAGE == LANGUAGE_ENGLISH) || REVISION >= 0xA
 
 // AGBPrint print functions
 #if (LOG_HANDLER == LOG_HANDLER_AGB_PRINT)

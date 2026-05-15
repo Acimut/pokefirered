@@ -130,8 +130,13 @@ MAKEFLAGS += --no-print-directory
 # Delete files that weren't built properly
 .DELETE_ON_ERROR:
 
-ALL_BUILDS := firered firered_rev1 leafgreen leafgreen_rev1 firered_es leafgreen_es firered_it leafgreen_it firered_fr leafgreen_fr firered_de leafgreen_de
-ALL_BUILDS += $(ALL_BUILDS:%=%_modern)
+ALL_BUILDS := firered firered_rev1 firered_switch leafgreen leafgreen_rev1 leafgreen_switch
+ALL_BUILDS += firered_es firered_fr firered_it firered_de
+ALL_BUILDS += leafgreen_es leafgreen_fr leafgreen_it leafgreen_de
+ALL_BUILDS += firered_modern firered_rev1_modern firered_switch_modern
+ALL_BUILDS += leafgreen_modern leafgreen_rev1_modern leafgreen_switch_modern
+ALL_BUILDS += firered_modern_es firered_modern_fr firered_modern_it firered_modern_de
+ALL_BUILDS += leafgreen_modern_es leafgreen_modern_fr leafgreen_modern_it leafgreen_modern_de
 
 RULES_NO_SCAN += clean clean-assets tidy generated clean-generated
 .PHONY: all rom modern compare $(ALL_BUILDS) $(ALL_BUILDS:%=compare_%)
@@ -225,6 +230,7 @@ tidy:
 # "friendly" target names for convenience sake
 firered:                ; @$(MAKE) GAME_VERSION=FIRERED
 firered_rev1:           ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=1
+firered_switch:         ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=10
 leafgreen:              ; @$(MAKE) GAME_VERSION=LEAFGREEN
 leafgreen_rev1:         ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=1
 firered_es:             ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH
@@ -235,9 +241,11 @@ firered_fr:             ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=FRENCH
 leafgreen_fr:           ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=FRENCH
 firered_de:             ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=GERMAN
 leafgreen_de:           ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=GERMAN
+leafgreen_switch:       ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=10
 
 compare_firered:        ; @$(MAKE) GAME_VERSION=FIRERED COMPARE=1
 compare_firered_rev1:   ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=1 COMPARE=1
+compare_firered_switch: ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=10 COMPARE=1
 compare_leafgreen:      ; @$(MAKE) GAME_VERSION=LEAFGREEN COMPARE=1
 compare_leafgreen_rev1: ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=1 COMPARE=1
 compare_firered_es:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH COMPARE=1
@@ -248,6 +256,7 @@ compare_firered_fr:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=FRENCH COM
 compare_leafgreen_fr:   ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=FRENCH COMPARE=1
 compare_firered_de:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=GERMAN COMPARE=1
 compare_leafgreen_de:   ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=GERMAN COMPARE=1
+compare_leafgreen_switch:; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=10 COMPARE=1
 
 firered_modern:        ; @$(MAKE) GAME_VERSION=FIRERED MODERN=1
 firered_rev1_modern:   ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=1 MODERN=1
@@ -376,7 +385,13 @@ ifeq ($(GAME_LANGUAGE),ENGLISH)
 $(OBJ_DIR)/sym_bss.ld: sym_bss.txt
 	$(RAMSCRGEN) .bss $< ENGLISH > $@
 
+$(OBJ_DIR)/sym_bss_rev10.ld: sym_bss_rev10.txt
+	$(RAMSCRGEN) .bss $< ENGLISH > $@
+
 $(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
+	$(RAMSCRGEN) COMMON $< ENGLISH -c $(C_BUILDDIR),common_syms > $@
+
+$(OBJ_DIR)/sym_common_rev10.ld: sym_common_rev10.txt $(C_OBJS) $(wildcard common_syms/*.txt)
 	$(RAMSCRGEN) COMMON $< ENGLISH -c $(C_BUILDDIR),common_syms > $@
 
 $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
@@ -392,14 +407,22 @@ $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
 	$(RAMSCRGEN) ewram_data $< $(GAME_LANGUAGE) > $@
 endif #GAME_LANGUAGE
 
-# Linker script
+$(OBJ_DIR)/sym_ewram_rev10.ld: sym_ewram_rev10.txt
+	$(RAMSCRGEN) ewram_data $< ENGLISH > $@
+
 ifeq ($(MODERN),0)
   ifeq ($(GAME_LANGUAGE),ENGLISH)
     LD_SCRIPT := ld_script.ld
+  else ifeq ($(GAME_LANGUAGE),MULTI)
+    LD_SCRIPT := ld_script_multi.ld
   else
     LD_SCRIPT := ld_script_europe.ld
   endif
     LD_SCRIPT_DEPS := $(OBJ_DIR)/sym_bss.ld $(OBJ_DIR)/sym_common.ld $(OBJ_DIR)/sym_ewram.ld
+ifeq ($(GAME_REVISION),10)
+  LD_SCRIPT := ld_script_rev10.ld
+  LD_SCRIPT_DEPS := $(OBJ_DIR)/sym_bss_rev10.ld $(OBJ_DIR)/sym_common_rev10.ld $(OBJ_DIR)/sym_ewram_rev10.ld
+endif
 else
 LD_SCRIPT := ld_script_modern.ld
 LD_SCRIPT_DEPS :=

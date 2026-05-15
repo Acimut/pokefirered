@@ -8,6 +8,8 @@ It builds the following ROM images:
 * Leaf Green: [**pokeleafgreen.gba**](https://datomatic.no-intro.org/?page=show_record&s=23&n=1617) `sha1: 574fa542ffebb14be69902d1d36f1ec0a4afd71e`
 * Fire Red Rev 1: [**pokefirered_rev1.gba**](https://datomatic.no-intro.org/?page=show_record&s=23&n=1672) `sha1: dd5945db9b930750cb39d00c84da8571feebf417`
 * Leaf Green Rev 1: [**pokeleafgreen_rev1.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1668) `sha1: 7862c67bdecbe21d1d69ce082ce34327e1c6ed5e`
+* Fire Red (Switch): [**pokefirered_switch.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=x550) `sha1: baa452d0b24629dd7782cfc07a8984085dde1311`
+* Leaf Green (Switch): [**pokeleafgreen_switch.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=x551) `sha1: 62b9fc77549dbc67032eb6cbd0ea6ad3b825690f`
 
 * Rouge Feu (France): [**pokefirered_fr.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1658) `sha1: fc663907256f06a3a09e2d6b967bc9af4919f111`
 * Vert Feuille (France): [**pokeleafgreen_fr.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1659) `sha1: 4b5758c14d0a07b70ef3ef0bd7fa5e7ce6978672`
