@@ -233,6 +233,7 @@ firered_rev1:           ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=1
 firered_switch:         ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=10
 leafgreen:              ; @$(MAKE) GAME_VERSION=LEAFGREEN
 leafgreen_rev1:         ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=1
+leafgreen_switch:       ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=10
 firered_es:             ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH
 leafgreen_es:           ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=SPANISH
 firered_it:             ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=ITALIAN
@@ -241,13 +242,13 @@ firered_fr:             ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=FRENCH
 leafgreen_fr:           ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=FRENCH
 firered_de:             ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=GERMAN
 leafgreen_de:           ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=GERMAN
-leafgreen_switch:       ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=10
 
 compare_firered:        ; @$(MAKE) GAME_VERSION=FIRERED COMPARE=1
 compare_firered_rev1:   ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=1 COMPARE=1
 compare_firered_switch: ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=10 COMPARE=1
 compare_leafgreen:      ; @$(MAKE) GAME_VERSION=LEAFGREEN COMPARE=1
 compare_leafgreen_rev1: ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=1 COMPARE=1
+compare_leafgreen_switch:; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=10 COMPARE=1
 compare_firered_es:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH COMPARE=1
 compare_leafgreen_es:   ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=SPANISH COMPARE=1
 compare_firered_it:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=ITALIAN COMPARE=1
@@ -256,7 +257,6 @@ compare_firered_fr:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=FRENCH COM
 compare_leafgreen_fr:   ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=FRENCH COMPARE=1
 compare_firered_de:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=GERMAN COMPARE=1
 compare_leafgreen_de:   ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_LANGUAGE=GERMAN COMPARE=1
-compare_leafgreen_switch:; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=10 COMPARE=1
 
 firered_modern:        ; @$(MAKE) GAME_VERSION=FIRERED MODERN=1
 firered_rev1_modern:   ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=1 MODERN=1
@@ -407,14 +407,13 @@ $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
 	$(RAMSCRGEN) ewram_data $< $(GAME_LANGUAGE) > $@
 endif #GAME_LANGUAGE
 
+# Linker script
 $(OBJ_DIR)/sym_ewram_rev10.ld: sym_ewram_rev10.txt
 	$(RAMSCRGEN) ewram_data $< ENGLISH > $@
 
 ifeq ($(MODERN),0)
   ifeq ($(GAME_LANGUAGE),ENGLISH)
     LD_SCRIPT := ld_script.ld
-  else ifeq ($(GAME_LANGUAGE),MULTI)
-    LD_SCRIPT := ld_script_multi.ld
   else
     LD_SCRIPT := ld_script_europe.ld
   endif
