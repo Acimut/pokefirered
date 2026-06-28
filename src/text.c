@@ -98,7 +98,7 @@ struct
 const u8 gKeypadIconTiles[] = INCBIN_U8("graphics/fonts/keypad_icons.4bpp");
 
 #if GAME_LANGUAGE == LANGUAGE_SPANISH
-static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small_es.latfont");
+static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small_es.hwlatfont");
 static const u8 sFontSmallLatinGlyphWidths[] =
 {
      5,  5,  5,  5,  5,  5,  5,  5,  5,  4,  5,  4,  4,  5,  5,  5,
@@ -135,7 +135,7 @@ static const u8 sFontSmallLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  5
 };
 #elif GAME_LANGUAGE == LANGUAGE_ITALIAN
-static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small_it.latfont");
+static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small_it.hwlatfont");
 static const u8 sFontSmallLatinGlyphWidths[] =
 {
      5,  5,  5,  5,  5,  5,  5,  5,  5,  4,  5,  4,  4,  5,  5,  5,
@@ -172,7 +172,7 @@ static const u8 sFontSmallLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  5
 };
 #elif GAME_LANGUAGE == LANGUAGE_FRENCH
-static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small_fr.latfont");
+static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small_fr.hwlatfont");
 static const u8 sFontSmallLatinGlyphWidths[] =
 {
      5,  5,  5,  5,  5,  5,  5,  5,  5,  4,  5,  4,  4,  5,  5,  5,
@@ -209,7 +209,7 @@ static const u8 sFontSmallLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  5
 };
 #elif GAME_LANGUAGE == LANGUAGE_GERMAN
-static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small_de.latfont");
+static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small_de.hwlatfont");
 static const u8 sFontSmallLatinGlyphWidths[] =
 {
      5,  5,  5,  5,  5,  5,  5,  5,  5,  4,  5,  4,  4,  5,  5,  5,
@@ -246,7 +246,7 @@ static const u8 sFontSmallLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  5
 };
 #else //LANGUAGE_ENGLISH
-static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small.latfont");
+static const u16 sFontSmallLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_small.hwlatfont");
 static const u8 sFontSmallLatinGlyphWidths[] = 
 {
      5,  5,  5,  5,  5,  5,  5,  5,  5,  4,  5,  4,  4,  5, 
@@ -291,7 +291,7 @@ static const u8 sFontSmallLatinGlyphWidths[] =
 static const u16 sFontSmallJapaneseGlyphs[] = INCBIN_U16("graphics/fonts/japanese_small.fwjpnfont");
 
 #if GAME_LANGUAGE == LANGUAGE_SPANISH
-static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_es.latfont");
+static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_es.fwlatfont");
 static const u8 sFontNormalCopy1LatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -328,7 +328,7 @@ static const u8 sFontNormalCopy1LatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_ITALIAN
-static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_it.latfont");
+static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_it.fwlatfont");
 static const u8 sFontNormalCopy1LatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -365,7 +365,7 @@ static const u8 sFontNormalCopy1LatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_FRENCH
-static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_fr.latfont");
+static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_fr.fwlatfont");
 static const u8 sFontNormalCopy1LatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -402,7 +402,7 @@ static const u8 sFontNormalCopy1LatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_GERMAN
-static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_de.latfont");
+static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_de.fwlatfont");
 static const u8 sFontNormalCopy1LatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -439,7 +439,7 @@ static const u8 sFontNormalCopy1LatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #else //LANGUAGE_ENGLISH
-static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal.latfont");
+static const u16 sFontNormalCopy1LatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal.fwlatfont");
 static const u8 sFontNormalCopy1LatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -484,7 +484,7 @@ static const u8 sFontNormalCopy1LatinGlyphWidths[] =
 static const u16 sFontTallJapaneseGlyphs[] = INCBIN_U16("graphics/fonts/japanese_tall.fwjpnfont");
 
 #if GAME_LANGUAGE == LANGUAGE_SPANISH
-static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_es.latfont");
+static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_es.fwlatfont");
 static const u8 sFontNormalLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -521,7 +521,7 @@ static const u8 sFontNormalLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_ITALIAN
-static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_it.latfont");
+static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_it.fwlatfont");
 static const u8 sFontNormalLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -558,7 +558,7 @@ static const u8 sFontNormalLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_FRENCH
-static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_fr.latfont");
+static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_fr.fwlatfont");
 static const u8 sFontNormalLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -595,7 +595,7 @@ static const u8 sFontNormalLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_GERMAN
-static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_de.latfont");
+static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal_de.fwlatfont");
 static const u8 sFontNormalLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -632,7 +632,7 @@ static const u8 sFontNormalLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #else //LANGUAGE_ENGLISH
-static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal.latfont");
+static const u16 sFontNormalLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_normal.fwlatfont");
 static const u8 sFontNormalLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -700,7 +700,7 @@ static const u8 sFontNormalJapaneseGlyphWidths[] =
 };
 
 #if GAME_LANGUAGE == LANGUAGE_SPANISH
-static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male_es.latfont");
+static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male_es.fwlatfont");
 static const u8 sFontMaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -737,7 +737,7 @@ static const u8 sFontMaleLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_ITALIAN
-static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male_it.latfont");
+static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male_it.fwlatfont");
 static const u8 sFontMaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -774,7 +774,7 @@ static const u8 sFontMaleLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_FRENCH
-static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male_fr.latfont");
+static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male_fr.fwlatfont");
 static const u8 sFontMaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -811,7 +811,7 @@ static const u8 sFontMaleLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_GERMAN
-static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male_de.latfont");
+static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male_de.fwlatfont");
 static const u8 sFontMaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -848,7 +848,7 @@ static const u8 sFontMaleLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #else //LANGUAGE_ENGLISH
-static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male.latfont");
+static const u16 sFontMaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_male.fwlatfont");
 static const u8 sFontMaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -916,7 +916,7 @@ static const u8 sFontMaleJapaneseGlyphWidths[] =
 };
 
 #if GAME_LANGUAGE == LANGUAGE_SPANISH
-static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female_es.latfont");
+static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female_es.fwlatfont");
 static const u8 sFontFemaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -953,7 +953,7 @@ static const u8 sFontFemaleLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_ITALIAN
-static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female_it.latfont");
+static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female_it.fwlatfont");
 static const u8 sFontFemaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -990,7 +990,7 @@ static const u8 sFontFemaleLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_FRENCH
-static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female_fr.latfont");
+static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female_fr.fwlatfont");
 static const u8 sFontFemaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -1027,7 +1027,7 @@ static const u8 sFontFemaleLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #elif GAME_LANGUAGE == LANGUAGE_GERMAN
-static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female_de.latfont");
+static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female_de.fwlatfont");
 static const u8 sFontFemaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
@@ -1064,7 +1064,7 @@ static const u8 sFontFemaleLatinGlyphWidths[] =
      8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  6
 };
 #else //LANGUAGE_ENGLISH
-static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female.latfont");
+static const u16 sFontFemaleLatinGlyphs[] = INCBIN_U16("graphics/fonts/latin_female.fwlatfont");
 static const u8 sFontFemaleLatinGlyphWidths[] =
 {
      6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
