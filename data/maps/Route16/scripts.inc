@@ -38,7 +38,7 @@ Route16_EventScript_Snorlax::
 	goto_if_eq VAR_RESULT, NO, Route16_EventScript_DontUsePokeFlute
 	call EventScript_AwakenSnorlax
 	setwildbattle SPECIES_SNORLAX, 30
-	.ifdef ENGLISH
+	.if GAME_LANGUAGE == LANGUAGE_ENGLISH
 	waitse
 	.endif
 	playmoncry SPECIES_SNORLAX, CRY_MODE_ENCOUNTER

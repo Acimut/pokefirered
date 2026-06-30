@@ -514,7 +514,7 @@ static const struct {
 
 #if GAME_LANGUAGE == LANGUAGE_ITALIAN
 #define MB_BERRYFIX_SIZE 0x4124
-#else //LANGUAGE_SPANISH
+#else
 #define MB_BERRYFIX_SIZE 0x4120
 #endif
 

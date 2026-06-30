@@ -1420,7 +1420,7 @@ const u8 *Localize_TrainerClass_Names(s32 battleType, u32 trainerId)
     }
 #endif
 
-u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst) //not matching
+u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst) 
 {
     u32 dstId = 0; // if they used dstId, why not use srcId as well?
     const u8 *toCpy = NULL;
