@@ -1848,261 +1848,70 @@ static bool8 HandleSwitchMapInput(void)
     return FALSE;
 }
 #else
-NAKED
-static bool8 HandleSwitchMapInput(void)
-{
-    asm(".syntax unified\n\
-    push {r4-r7, lr}\n\
-    sub sp, sp, #0x8\n\
-    ldr r5, _80C17A0 @sSwitchMapMenu\n\
-    ldr r6, [r5]\n\
-    ldr r1, _80C17A4 @0x1cd4\n\
-    adds r0, r6, r1\n\
-    movs r1, #0x48\n\
-    strh r1, [r0]\n\
-    ldr r4, _80C17A8 @0xffff0000\n\
-    ldr r0, [sp]\n\
-    ands r0, r0, r4\n\
-    orrs r0, r0, r1\n\
-    str r0, [sp]\n\
-    ldr r2, _80C17AC @0x1cce\n\
-    adds r0, r6, r2\n\
-    ldr r7, _80C17B0 @0x1cca\n\
-    adds r3, r6, r7\n\
-    mov r12, r3\n\
-    ldrb r1, [r3]\n\
-    lsls r1, r1, #0x2\n\
-    ldrh r0, [r0]\n\
-    adds r1, r1, r0\n\
-    lsls r1, r1, #0x3\n\
-    ldr r0, _80C17B4 @0x1cd6\n\
-    adds r3, r6, r0\n\
-    strh r1, [r3]\n\
-    lsls r1, r1, #0x10\n\
-    ldr r2, _80C17B8 @0xffff\n\
-    ldr r0, [sp]\n\
-    ands r0, r0, r2\n\
-    orrs r0, r0, r1\n\
-    str r0, [sp]\n\
-    ldr r1, _80C17BC @0x1cd8\n\
-    adds r0, r6, r1\n\
-    movs r1, #0xa8\n\
-    strh r1, [r0]\n\
-    ldr r0, [sp, #0x4]\n\
-    ands r0, r0, r4\n\
-    orrs r0, r0, r1\n\
-    str r0, [sp, #0x4]\n\
-    ldrh r1, [r3]\n\
-    adds r1, r1, #0x20\n\
-    ldr r3, _80C17C0 @0x1cda\n\
-    adds r0, r6, r3\n\
-    strh r1, [r0]\n\
-    ands r1, r1, r2\n\
-    lsls r1, r1, #0x10\n\
-    ldr r0, [sp, #0x4]\n\
-    ands r0, r0, r2\n\
-    orrs r0, r0, r1\n\
-    str r0, [sp, #0x4]\n\
-@_80C1776: @if_DPAD_UP: unused label\n\
-    ldr r1, _80C17C4 @gMain\n\
-    ldrh r2, [r1, #0x2e]\n\
-    movs r0, #0x40\n\
-    ands r0, r0, r2\n\
-    cmp r0, #0\n\
-    beq _80C17C8 @if_DPAD_DOWN\n\
-    adds r1, r7, #0x0\n\
-    adds r0, r6, r1\n\
-    ldrb r0, [r0]\n\
-    cmp r0, #0\n\
-    bne _80C178E\n\
-    b _80C1880 @changedSelection_false\n\
-_80C178E:\n\
-    movs r0, #0xf5\n\
-    bl PlaySE\n\
-    ldr r1, [r5]\n\
-    adds r1, r1, r7\n\
-    ldrb r0, [r1]\n\
-    subs r0, r0, #0x1\n\
-    strb r0, [r1]\n\
-    b _80C1886 @changedSelection_true\n\
-    .align 2, 0\n\
-_80C17A0: .word sSwitchMapMenu\n\
-_80C17A4: .word 0x1cd4\n\
-_80C17A8: .word 0xffff0000\n\
-_80C17AC: .word 0x1cce\n\
-_80C17B0: .word 0x1cca\n\
-_80C17B4: .word 0x1cd6\n\
-_80C17B8: .word 0xffff\n\
-_80C17BC: .word 0x1cd8\n\
-_80C17C0: .word 0x1cda\n\
-_80C17C4: .word gMain\n\
-_80C17C8: @if_DPAD_DOWN:\n\
-    movs r0, #0x80\n\
-    ands r0, r0, r2\n\
-    cmp r0, #0\n\
-    beq _80C17F4 @if_A_BUTTON\n\
-    ldr r2, _80C17F0 @0x1ccc\n\
-    adds r1, r6, r2\n\
-    mov r3, r12\n\
-    ldrb r0, [r3]\n\
-    ldrb r1, [r1]\n\
-    cmp r0, r1\n\
-    bcs _80C1880 @changedSelection_false\n\
-    movs r0, #0xf5\n\
-    bl PlaySE\n\
-    ldr r1, [r5]\n\
-    adds r1, r1, r7\n\
-    ldrb r0, [r1]\n\
-    adds r0, r0, #0x1\n\
-    strb r0, [r1]\n\
-    b _80C1886 @changedSelection_true\n\
-    .align 2, 0\n\
-_80C17F0: .word 0x1ccc\n\
-_80C17F4: @if_A_BUTTON:\n\
-    movs r0, #0x1\n\
-    ands r0, r0, r2\n\
-    cmp r0, #0\n\
-    beq _80C1824 @if_B_BUTTON\n\
-    ldr r2, _80C181C @0x1cdc\n\
-    adds r0, r6, r2\n\
-    ldrh r0, [r0]\n\
-    cmp r0, #0x6\n\
-    bne _80C1824 @if_B_BUTTON\n\
-    movs r0, #0xc7\n\
-    bl PlaySE\n\
-    ldr r0, [r5]\n\
-    adds r1, r0, r7\n\
-    ldrb r1, [r1]\n\
-    ldr r3, _80C1820 @0x1ccb\n\
-    adds r0, r0, r3\n\
-    strb r1, [r0]\n\
-    movs r0, #0x1\n\
-    b _80C1928 @return_r0\n\
-    .align 2, 0\n\
-_80C181C: .word 0x1cdc\n\
-_80C1820: .word 0x1ccb\n\
-_80C1824: @if_B_BUTTON\n\
-    ldrh r1, [r1, #0x2e]\n\
-    movs r0, #0x2\n\
-    ands r0, r0, r1\n\
-    cmp r0, #0\n\
-    beq _80C1880 @changedSelection_false\n\
-    ldr r0, [r5]\n\
-    ldr r2, _80C1878\n\
-    adds r1, r0, r2\n\
-    ldrb r1, [r1]\n\
-    subs r2, r2, #0x1\n\
-    adds r0, r0, r2\n\
-    strb r1, [r0]\n\
-    ldr r3, _80C187C\n\
-    ldr r0, [r5]\n\
-    adds r0, r0, r2\n\
-    ldrb r0, [r0]\n\
-    lsls r1, r0, #0x2\n\
-    adds r1, r1, r0\n\
-    lsls r0, r1, #0x4\n\
-    subs r0, r0, r1\n\
-    lsls r0, r0, #0x4\n\
-    adds r0, r0, #0x26\n\
-    ldr r1, [r3]\n\
-    adds r1, r1, r0\n\
-    movs r0, #0x0\n\
-    bl BufferRegionMapBg\n\
-    movs r0, #0x0\n\
-    bl CopyBgTilemapBufferToVram\n\
-    movs r0, #0xff\n\
-    movs r1, #0x19\n\
-    movs r2, #0x1\n\
-    bl SetFlyIconInvisibility\n\
-    movs r0, #0xff\n\
-    movs r1, #0x19\n\
-    movs r2, #0x1\n\
-    bl SetDungeonIconInvisibility\n\
-    movs r0, #0x1\n\
-    b _80C1928 @return_r0\n\
-    .align 2, 0\n\
-_80C1878: .word 0x1ccb\n\
-_80C187C: .word sRegionMap\n\
-_80C1880: @changedSelection_false\n\
-    movs r0, #0x0\n\
-    cmp r0, #0\n\
-    beq _80C18EA @if_end\n\
-_80C1886: @changedSelection_true\n\
-    ldr r2, _80C1908 @sRegionMap\n\
-    ldr r5, _80C190C @sSwitchMapMenu\n\
-    ldr r0, [r5]\n\
-    ldr r4, _80C1910 @0x1cca\n\
-    adds r0, r0, r4\n\
-    ldrb r0, [r0]\n\
-    lsls r1, r0, #0x2\n\
-    adds r1, r1, r0\n\
-    lsls r0, r1, #0x4\n\
-    subs r0, r0, r1\n\
-    lsls r0, r0, #0x4\n\
-    adds r0, r0, #0x26\n\
-    ldr r1, [r2]\n\
-    adds r1, r1, r0\n\
-    movs r0, #0x0\n\
-    bl BufferRegionMapBg\n\
-    ldr r0, _80C1914 @gText_RegionMap_AButtonOK\n\
-    bl PrintTopBarTextRight\n\
-    movs r0, #0x0\n\
-    bl CopyBgTilemapBufferToVram\n\
-    movs r0, #0x3\n\
-    bl CopyBgTilemapBufferToVram\n\
-    movs r0, #0xff\n\
-    movs r1, #0x19\n\
-    movs r2, #0x1\n\
-    bl SetFlyIconInvisibility\n\
-    movs r0, #0xff\n\
-    movs r1, #0x19\n\
-    movs r2, #0x1\n\
-    bl SetDungeonIconInvisibility\n\
-    ldr r0, [r5]\n\
-    adds r0, r0, r4\n\
-    ldrb r0, [r0]\n\
-    movs r1, #0x19\n\
-    movs r2, #0x0\n\
-    bl SetFlyIconInvisibility\n\
-    ldr r0, [r5]\n\
-    adds r0, r0, r4\n\
-    ldrb r0, [r0]\n\
-    movs r1, #0x19\n\
-    movs r2, #0x0\n\
-    bl SetDungeonIconInvisibility\n\
-_80C18EA: @if_end\n\
-    ldr r0, _80C190C @sSwitchMapMenu\n\
-    ldr r4, [r0]\n\
-    ldr r3, _80C1910 @0x1cca\n\
-    adds r4, r4, r3\n\
-    bl GetRegionMapPlayerIsOn\n\
-    ldrb r1, [r4]\n\
-    lsls r0, r0, #0x18\n\
-    lsrs r0, r0, #0x18\n\
-    cmp r1, r0\n\
-    beq _80C1918 @else_end\n\
-    movs r0, #0x1\n\
-    bl SetPlayerIconInvisibility\n\
-    b _80C191E @continue_end\n\
-    .align 2, 0\n\
-_80C1908: .word sRegionMap\n\
-_80C190C: .word sSwitchMapMenu\n\
-_80C1910: .word 0x1cca\n\
-_80C1914: .word gText_RegionMap_AButtonOK\n\
-_80C1918: @else_end\n\
-    movs r0, #0x0\n\
-    bl SetPlayerIconInvisibility\n\
-_80C191E: @continue_end\n\
-    movs r0, #0x1\n\
-    mov r1, sp\n\
-    bl SetGpuWindowDims\n\
-    movs r0, #0x0\n\
-_80C1928: @return_r0\n\
-    add sp, sp, #0x8\n\
-    pop {r4-r7}\n\
-    pop {r1}\n\
-    bx r1\n\
-    .syntax divided\n");
+bool8 HandleSwitchMapInput(void) {
+    bool8 changedSelection = FALSE;
+    u8 r1; //var temp for matching purposes
+    struct GpuWindowParams data;
+    data.left = sSwitchMapMenu->highlight.left = 72;
+    data.top = sSwitchMapMenu->highlight.top = 8 * (sSwitchMapMenu->yOffset + 4 * sSwitchMapMenu->currentSelection);
+    data.right = sSwitchMapMenu->highlight.right = 168;
+    data.bottom = sSwitchMapMenu->highlight.bottom = sSwitchMapMenu->highlight.top + 32;
+
+    if (JOY_NEW(DPAD_UP))
+    {
+        if (sSwitchMapMenu->currentSelection != 0)
+        {
+            PlaySE(SE_BAG_CURSOR);
+            sSwitchMapMenu->currentSelection--;
+            changedSelection = TRUE;
+        }
+    }
+    else if (JOY_NEW(DPAD_DOWN))
+    {
+        r1 = sSwitchMapMenu->maxSelection;
+        if (sSwitchMapMenu->currentSelection < r1)
+        {
+            PlaySE(SE_BAG_CURSOR);
+            sSwitchMapMenu->currentSelection++;
+            changedSelection = TRUE;
+        }
+    }
+    else
+    {
+        if (JOY_NEW(A_BUTTON) && sSwitchMapMenu->blendY == 6)
+        {
+            PlaySE(SE_M_SWIFT);
+            sSwitchMapMenu->chosenRegion = sSwitchMapMenu->currentSelection;
+            return TRUE;
+        }
+        if (JOY_NEW(B_BUTTON))
+        {
+            sSwitchMapMenu->currentSelection = sSwitchMapMenu->chosenRegion;
+            BufferRegionMapBg(0, sRegionMap->layouts[sSwitchMapMenu->currentSelection]);
+            CopyBgTilemapBufferToVram(0);
+            SetFlyIconInvisibility(0xFF, 0x19, TRUE);
+            SetDungeonIconInvisibility(0xFF, 0x19, TRUE);
+            return TRUE;
+        }
+    }
+    if (changedSelection)
+    {
+        BufferRegionMapBg(0, sRegionMap->layouts[sSwitchMapMenu->currentSelection]);
+        PrintTopBarTextRight(gText_RegionMap_AButtonOK);
+        CopyBgTilemapBufferToVram(0);
+        CopyBgTilemapBufferToVram(3);
+        SetFlyIconInvisibility(0xFF, 0x19, TRUE);
+        SetDungeonIconInvisibility(0xFF, 0x19, TRUE);
+        SetFlyIconInvisibility(sSwitchMapMenu->currentSelection, 0x19, FALSE);
+        SetDungeonIconInvisibility(sSwitchMapMenu->currentSelection, 0x19, FALSE);
+    }
+
+    if (sSwitchMapMenu->currentSelection != GetRegionMapPlayerIsOn())
+        SetPlayerIconInvisibility(TRUE);
+    else
+        SetPlayerIconInvisibility(FALSE);
+    SetGpuWindowDims(1, &data);
+    return FALSE;
 }
 #endif
 
